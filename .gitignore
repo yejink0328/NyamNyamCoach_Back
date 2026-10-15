@@ -1,0 +1,18 @@
+# 빌드 결과물
+build/
+target/
+*.class
+*.war
+
+# STS 개인 환경 (.project, .classpath, .settings는 커밋함)
+.metadata/
+Servers/
+.apt_generated/
+
+# 기타
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+.env
