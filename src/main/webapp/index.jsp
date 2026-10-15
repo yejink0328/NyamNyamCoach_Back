@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,17 +11,8 @@
   <link rel="stylesheet" href="./css/meal.css">
 </head>
 <body class="main-page">
-  <header class="page-header site-header">
-    <div class="header-inner">
-      <a class="brand" href="./index.html"><span class="brand-mark">Y</span><span>냠냠코치</span></a>
-      <nav class="main-nav" aria-label="주요 메뉴">
-        <a class="nav-link active" href="./index.html">홈</a>
-        <a class="nav-link" href="dietboard?act=list">식단관리</a>
-        <a class="nav-link member-page-link" href="./mypage.html">마이페이지</a>
-      </nav>
-      <div class="header-account"><span class="status-dot"></span><span id="headerAuthText">로그인 전</span></div>
-    </div>
-  </header>
+  
+  <c:import url="/WEB-INF/include/header.jsp" />
 
   <section class="home-heading">
     <div><p class="eyebrow dark">HEALTHY DAILY ROUTINE</p><h1 id="homeTitle">오늘도 맛있는 식사, 냠냠코치와 함께</h1><p id="homeDescription">추천 메뉴를 둘러보고 로그인하여 오늘의 식단을 기록해 보세요.</p></div>
@@ -85,8 +78,8 @@
     </aside>
   </main>
 
-  <footer class="site-footer"><strong>냠냠코치</strong><span>건강한 하루를 만드는 가장 쉬운 습관</span><span>© 2026 NyamNyam Coach</span></footer>
-
+ 	<c:import url="/WEB-INF/include/footer.jsp" />
+ 
   <script type="module" src="./js/main-page.js"></script>
   <script type="module" src="./js/auth-login.js"></script>
 
