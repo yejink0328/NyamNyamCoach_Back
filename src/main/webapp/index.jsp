@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,29 +62,55 @@
       <a class="button button-outline auth-only hidden" href="./meal.html">전체 식단 관리</a>
     </section>
 
-    <aside class="card account-panel">
-      <div id="guestAccount">
-        <p class="eyebrow dark">ACCOUNT</p>
-        <form id="quickLoginForm" class="quick-login-form">
-          <label for="quickLoginId">아이디</label>
-          <input id="quickLoginId" value="1111" required>
-          <label for="quickLoginPassword">비밀번호</label>
-          <input id="quickLoginPassword" type="password" value="1111" required>
-          <p id="quickLoginError" class="error"></p>
-          <button class="button button-primary" type="submit">로그인</button>
-        </form>
-        <a class="button button-outline account-link" href="./signup.html">회원가입</a>
-      </div>
-      <div id="userAccount" class="hidden">
-        <div class="profile-avatar">Y</div>
-        <p class="eyebrow dark">MY COACH</p>
-        <h2><span id="currentUserName">회원</span>님</h2>
-        <div class="goal-box"><span>오늘의 목표</span><strong>균형 잡힌 세 끼 기록</strong><div class="goal-progress"><i></i></div></div>
-        <a class="button button-outline account-link" href="./mypage.html">마이페이지</a>
-        <button id="logoutBridgeBtn" class="button button-outline" type="button">로그아웃</button>
-      </div>
-    </aside>
-  </main>
+		<aside class="card account-panel">
+			<c:choose>
+				<c:when test="${sessionScope.login == null}">
+					<div id="guestAccount">
+						<p class="eyebrow dark">ACCOUNT</p>
+						<form id="quickLoginForm" class="quick-login-form"
+							action="${pageContext.request.contextPath}/login" method="post">
+							<label for="quickLoginId">아이디</label> <input id="quickLoginId"
+								name="Id" value="ssafy" required> <label
+								for="quickLoginPassword">비밀번호</label> <input
+								id="quickLoginPassword" name="Pw" type="password" value="1234"
+								required>
+							<p id="quickLoginError" class="error"></p>
+							<button class="button button-primary" type="submit">로그인</button>
+						</form>
+						<a class="button button-outline account-link" href="./signup.html">회원가입</a>
+					</div>
+
+				</c:when>
+				<c:otherwise>
+
+					<div id="userAccount" >
+						<div class="profile-avatar">Y</div>
+						<p class="eyebrow dark">MY COACH</p>
+						<h2>
+							<span id="currentUserName">${login.id} 회원</span>님
+							
+						</h2>
+						<div class="goal-box">
+							<span>오늘의 목표</span><strong>균형 잡힌 세 끼 기록</strong>
+							<div class="goal-progress">
+								<i></i>
+							</div>
+						</div>
+						<a class="button button-outline account-link" href="./mypage.html">마이페이지</a>
+						<button id="logoutBridgeBtn" class="button button-outline"
+							type="button">로그아웃</button>
+					</div>
+
+
+				</c:otherwise>
+
+			</c:choose>
+		</aside>
+
+
+
+
+	</main>
 
   <footer class="site-footer"><strong>냠냠코치</strong><span>건강한 하루를 만드는 가장 쉬운 습관</span><span>© 2026 NyamNyam Coach</span></footer>
 
