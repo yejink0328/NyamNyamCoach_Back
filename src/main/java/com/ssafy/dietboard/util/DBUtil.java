@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBUtil {
 	//연결정보
-	private final String url = "jdbc:mysql://localhost:3306/ssafy_board?serverTimezone=UTC";
+	private final String url = "jdbc:mysql://localhost:3306/nyamnyamcoach?serverTimezone=UTC";
 	private final String user = "ssafy";
 	private final String password = "ssafy";
 	private final String driverName = "com.mysql.cj.jdbc.Driver";
