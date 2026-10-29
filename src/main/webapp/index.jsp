@@ -5,12 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>냠냠코치</title>
-  <link rel="stylesheet" href="./css/meal.css">
-</head>
+<c:import url="/WEB-INF/include/head.jsp" />
 <body class="main-page">
   
 	<c:set var="menu" value="home" scope="request" />
