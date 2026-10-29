@@ -1,6 +1,11 @@
 package com.ssafy.dietboard.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import com.ssafy.dietboard.model.dto.Diet;
+import com.ssafy.dietboard.service.DietBoardService;
+import com.ssafy.dietboard.service.DietBoardServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,9 +19,12 @@ public class DietBoardController extends HttpServlet {
 	private static final String VIEW_PREFIX = "/WEB-INF/dietboard/";
 	private static final String VIEW_SUFFIX = ".jsp";
 	
+	private DietBoardService service = DietBoardServiceImpl.getInstance();
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		
 		String act = request.getParameter("act");
 		
 		switch(act) {
@@ -32,13 +40,15 @@ public class DietBoardController extends HttpServlet {
 	}
 
 	private void doMyPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		List<Diet> list = service.getList();
+		request.setAttribute("list", list);
 		request.setAttribute("menu", "mypage");
 		forwardToView(request, response, "mypage");
 		
 	}
 
 	private void doList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		request.setAttribute("menu", "diet");
 		forwardToView(request, response, "meal");
