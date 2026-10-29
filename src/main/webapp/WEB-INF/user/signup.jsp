@@ -1,95 +1,95 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>임시 로그인 - 냠냠코치</title>
-  <link rel="stylesheet" href="./css/meal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 | 냠냠코치</title>
+
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/css/meal.css">
 </head>
 <body class="login-page">
-  <header class="page-header site-header">
-    <div class="header-inner">
-      <a class="brand" href="./index.html"><span class="brand-mark">Y</span><span>냠냠코치</span></a>
-    </div>
-  </header>
 
-  <main class="login-shell">
-    <section class="card login-card">
-      <p class="eyebrow dark">SIGN UP</p>
-      <h1>회원가입</h1>
-      <p class="muted">냠냠코치를 이용하기 위해 회원가입 해주세요.</p>
+    <main class="login-shell">
+        <section class="card login-card">
+            <h1>회원가입</h1>
 
+            <p class="error">
+                <c:out value="${error}" />
+            </p>
 
-      <form id="SignupForm">
+            <form action="${pageContext.request.contextPath}/user"
+                  method="post">
 
-          <label for="SignupId">아이디</label>
-          <input
-          id="SignupId"
-          placeholder="사용할 아이디를 입력하세요"
-          autocomplete="username" required>
+                <input type="hidden" name="act" value="signup">
 
-          <label for="SignupPassword">비밀번호</label>
-          <input 
-            id="SignupPassword" 
-            type="password" 
-            placeholder="사용할 비밀번호를 입력하세요"
-            autocomplete="current-password" required>
-          
-          <label for="SignupPasswordConfirm">비밀번호 확인</label>
-          <input 
-            id="SignupPasswordConfirm" 
-            type="password" 
-            placeholder="비밀번호를 다시 입력하세요"
-            autocomplete="current-password" required>
+                <label for="signupId">아이디</label>
+                <input id="signupId"
+                       name="Id"
+                       type="text"
+                       pattern="[A-Za-z0-9_]{4,50}"
+                       maxlength="50"
+                       autocomplete="username"
+                       placeholder="영문, 숫자, 밑줄 4~50자"
+                       required>
 
+                <label for="signupPw">비밀번호</label>
+                <input id="signupPw"
+                       name="Pw"
+                       type="password"
+                       minlength="8"
+                       maxlength="128"
+                       autocomplete="new-password"
+                       required>
 
-        <label for="name">이름</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="이름을 입력하세요"
-          required
-        />
+                <label for="confirmPw">비밀번호 확인</label>
+                <input id="confirmPw"
+                       name="confirmPw"
+                       type="password"
+                       minlength="8"
+                       maxlength="128"
+                       autocomplete="new-password"
+                       required>
 
-        <label for="height">키(cm)</label>
-        <input
-          id="height"
-          name="height"
-          type="number"
-          min="1"
-          placeholder="예: 170"
-          required
-        />
-        
-        <label for="weight">몸무게(kg)</label>
-        <input
-          id="weight"
-          name="weight"
-          type="number"
-          min="1"
-          step="0.1"
-          placeholder="예: 65.5"
-          required
-        />
+                <label for="name">이름</label>
+                <input id="name"
+                       name="name"
+                       type="text"
+                       maxlength="100"
+                       required>
 
-        <label for="disease">질환 또는 건강 유의사항</label>
-        <input
-          id="disease"
-          name="disease"
-          type="text"
-          placeholder="없으면 '없음'이라고 입력하세요"
-        />
+                <label for="height">키(cm)</label>
+                <input id="height"
+                       name="height"
+                       type="number"
+                       min="1"
+                       max="300"
+                       step="1"
+                       required>
 
-        <p id="SingupError" class="error" aria-live="polite"></p>
-        <button class="button button-primary login-signup-submit" type="submit">회원가입</button>
-      </form>
-    </section>
-  </main>
+                <label for="weight">몸무게(kg)</label>
+                <input id="weight"
+                       name="weight"
+                       type="number"
+                       min="0.1"
+                       max="1000"
+                       step="0.1"
+                       required>
 
-  <script type="module" src="./js/auth-signup.js"></script>
+                <button class="button button-primary" type="submit">
+                    회원가입
+                </button>
+            </form>
+
+            <a href="${pageContext.request.contextPath}/">
+                홈으로
+            </a>
+        </section>
+    </main>
+
 </body>
 </html>
-    
