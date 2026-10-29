@@ -13,7 +13,8 @@
 </head>
 <body class="main-page">
   
-  <c:import url="/WEB-INF/include/header.jsp" />
+	<c:set var="menu" value="home" scope="request" />
+  	<c:import url="/WEB-INF/include/header.jsp" />
 
   <section class="home-heading">
     <div><p class="eyebrow dark">HEALTHY DAILY ROUTINE</p><h1 id="homeTitle">오늘도 맛있는 식사, 냠냠코치와 함께</h1><p id="homeDescription">추천 메뉴를 둘러보고 로그인하여 오늘의 식단을 기록해 보세요.</p></div>
