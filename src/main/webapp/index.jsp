@@ -1,60 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>냠냠코치</title>
-  <link rel="stylesheet" href="./css/meal.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>냠냠코치</title>
+<link rel="stylesheet" href="./css/meal.css">
 </head>
 <body class="main-page">
-  
+
 	<c:set var="menu" value="home" scope="request" />
-  	<c:import url="/WEB-INF/include/header.jsp" />
+	<c:import url="/WEB-INF/include/header.jsp" />
 
-  <section class="home-heading">
-    <div><p class="eyebrow dark">HEALTHY DAILY ROUTINE</p><h1 id="homeTitle">오늘도 맛있는 식사, 냠냠코치와 함께</h1><p id="homeDescription">추천 메뉴를 둘러보고 로그인하여 오늘의 식단을 기록해 보세요.</p></div>
-  </section>
+	<section class="home-heading">
+		<div>
+			<p class="eyebrow dark">HEALTHY DAILY ROUTINE</p>
+			<h1 id="homeTitle">오늘도 맛있는 식사, 냠냠코치와 함께</h1>
+			<p id="homeDescription">추천 메뉴를 둘러보고 로그인하여 오늘의 식단을 기록해 보세요.</p>
+		</div>
+	</section>
 
-  <main class="container dashboard-grid">
-    <aside class="card recommendation-panel">
-      <p class="eyebrow dark">RECOMMENDATION</p>
-      <h2>추천 식단</h2>
-      <div id="recommendationList"></div>
-    </aside>
+	<main class="container dashboard-grid">
+		<aside class="card recommendation-panel">
+			<p class="eyebrow dark">RECOMMENDATION</p>
+			<h2>추천 식단</h2>
+			<div id="recommendationList"></div>
+		</aside>
 
-    <aside class="welcome-card hidden">
-      <span class="welcome-badge">오늘의 코치</span>
-      <h2><span id="welcomeUserName">회원</span>님,<br>반갑습니다!</h2>
-      <p>꾸준한 기록이 건강한 변화를 만들어요.</p>
-      <dl class="welcome-stats">
-        <div><dt>오늘 기록</dt><dd id="todayMealCount">0개</dd></div>
-        <div><dt>평균 별점</dt><dd id="todayRating">0.0</dd></div>
-      </dl>
-      <a class="button welcome-button" href="./meal.html?create=1">식단 기록하기</a>
-    </aside>
+		<aside class="welcome-card hidden">
+			<span class="welcome-badge">오늘의 코치</span>
+			<h2>
+				<span id="welcomeUserName">회원</span>님,<br>반갑습니다!
+			</h2>
+			<p>꾸준한 기록이 건강한 변화를 만들어요.</p>
+			<dl class="welcome-stats">
+				<div>
+					<dt>오늘 기록</dt>
+					<dd id="todayMealCount">0개</dd>
+				</div>
+				<div>
+					<dt>평균 별점</dt>
+					<dd id="todayRating">0.0</dd>
+				</div>
+			</dl>
+			<a class="button welcome-button" href="./meal.html?create=1">식단
+				기록하기</a>
+		</aside>
 
-    <section class="card today-panel">
-      <div class="controls">
-        <div>
-          <p class="eyebrow dark">TODAY</p>
-          <h2>오늘 하루 식단</h2>
-        </div>
-        <a id="writeMealLink" class="button button-primary auth-only hidden" href="./meal.html?create=1">+ 식단 작성</a>
-      </div>
+		<section class="card today-panel">
+			<div class="controls">
+				<div>
+					<p class="eyebrow dark">TODAY</p>
+					<h2>오늘 하루 식단</h2>
+				</div>
+				<a id="writeMealLink" class="button button-primary auth-only hidden"
+					href="./meal.html?create=1">+ 식단 작성</a>
+			</div>
 
-      <div id="guestMealMessage" class="empty-state">
-        <div class="empty-icon">⌁</div>
-        <h3>내 식단 기록을 로그인 후 확인해요</h3>
-        <p>아침·점심·저녁 식단을 기록하고 영양 정보를 관리할 수 있어요.</p>
-      </div>
-      <div id="todayMeals" class="meal-summary-list auth-only hidden"></div>
-      <a class="button button-outline auth-only hidden" href="./meal.html">전체 식단 관리</a>
-    </section>
+			<div id="guestMealMessage" class="empty-state">
+				<div class="empty-icon">⌁</div>
+				<h3>내 식단 기록을 로그인 후 확인해요</h3>
+				<p>아침·점심·저녁 식단을 기록하고 영양 정보를 관리할 수 있어요.</p>
+			</div>
+			<div id="todayMeals" class="meal-summary-list auth-only hidden"></div>
+			<a class="button button-outline auth-only hidden" href="./meal.html">전체
+				식단 관리</a>
+		</section>
 
 		<aside class="card account-panel">
 			<c:choose>
@@ -62,27 +77,32 @@
 					<div id="guestAccount">
 						<p class="eyebrow dark">ACCOUNT</p>
 						<form id="quickLoginForm" class="quick-login-form"
-							action="${pageContext.request.contextPath}/login" method="post">
-							<label for="quickLoginId">아이디</label> <input id="quickLoginId"
-								name="Id" value="ssafy" required> <label
+							action="${pageContext.request.contextPath}/user" method="post">
+
+							<input type="hidden" name="act" value="login"> <label
+								for="quickLoginId">아이디</label> <input id="quickLoginId"
+								name="Id" type="text" required> <label
 								for="quickLoginPassword">비밀번호</label> <input
-								id="quickLoginPassword" name="Pw" type="password" value="1234"
-								required>
-							<p id="quickLoginError" class="error"></p>
-							<button class="button button-primary" type="submit">로그인</button>
+								id="quickLoginPassword" name="Pw" type="password" required>
+
+							<button class="button button-primary" type="submit">로그인
+							</button>
 						</form>
-						<a class="button button-outline account-link" href="./signup.html">회원가입</a>
+
+						<a class="button button-outline account-link"
+							href="${pageContext.request.contextPath}/user?act=signupform">
+							회원가입 </a> 
 					</div>
 
 				</c:when>
 				<c:otherwise>
 
-					<div id="userAccount" >
+					<div id="userAccount">
 						<div class="profile-avatar">Y</div>
 						<p class="eyebrow dark">MY COACH</p>
 						<h2>
 							<span id="currentUserName">${login.id} 회원</span>님
-							
+
 						</h2>
 						<div class="goal-box">
 							<span>오늘의 목표</span><strong>균형 잡힌 세 끼 기록</strong>
@@ -90,9 +110,17 @@
 								<i></i>
 							</div>
 						</div>
-						<a class="button button-outline account-link" href="./mypage.html">마이페이지</a>
-						<button id="logoutBridgeBtn" class="button button-outline"
-							type="button">로그아웃</button>
+						<a class="button button-outline account-link"
+							href="${pageContext.request.contextPath}/user?act=mypage">
+							마이페이지 </a>
+
+						<form action="${pageContext.request.contextPath}/user"
+							method="post">
+							<input type="hidden" name="act" value="logout">
+
+							<button class="button button-outline" type="submit">
+								로그아웃</button>
+						</form>
 					</div>
 
 
@@ -106,10 +134,7 @@
 
 	</main>
 
- 	<c:import url="/WEB-INF/include/footer.jsp" />
- 
-  <script type="module" src="./js/main-page.js"></script>
-  <script type="module" src="./js/auth-login.js"></script>
+	<c:import url="/WEB-INF/include/footer.jsp" />
 
 </body>
 </html>
